@@ -47,7 +47,7 @@
       "mailto:" +
       email +
       "?subject=" +
-      encodeURIComponent("Hemmer Digital — " + topic) +
+      encodeURIComponent("Hemmer Digital Services — " + topic) +
       "&body=" +
       encodeURIComponent(body);
 

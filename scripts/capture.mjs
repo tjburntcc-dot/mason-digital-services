@@ -10,6 +10,7 @@ const chrome =
   "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 
 const pages = [
+  { path: "/", file: "assets/img/screenshots/home-fold-desktop.png", width: 1280, height: 800, full: false },
   { path: "/", file: "assets/img/screenshots/home-desktop.png", width: 1280, height: 800, full: true },
   { path: "/", file: "assets/img/screenshots/home-mobile.png", width: 390, height: 844, full: true },
   { path: "/work/", file: "assets/img/screenshots/work-desktop.png", width: 1280, height: 800, full: true },
@@ -47,20 +48,53 @@ async function shot(spec, after) {
   await page.close();
 }
 
-async function elShot(urlPath, selector, file) {
+async function clipRatio(urlPath, selector, file, from = "start") {
   const page = await browser.newPage();
-  await page.setViewport({ width: 1280, height: 900, deviceScaleFactor: 2 });
+  await page.setViewport({ width: 1440, height: 1200, deviceScaleFactor: 1 });
   await page.goto(origin + urlPath, { waitUntil: "networkidle0", timeout: 30000 });
   const el = await page.$(selector);
   if (!el) throw new Error("Missing " + selector + " on " + urlPath);
+  await el.evaluate((node) => node.scrollIntoView({ block: "center" }));
+  const box = await el.boundingBox();
+  const width = Math.min(Math.round(box.width), 1280);
+  const height = Math.round(width * 10 / 16);
+  const x = Math.max(0, box.x + (box.width - width) / 2);
+  const y = from === "start"
+    ? Math.max(0, box.y)
+    : Math.max(0, box.y + box.height / 2 - height / 2);
   const out = join(root, file);
   mkdirSync(dirname(out), { recursive: true });
-  await el.screenshot({ path: out });
+  await page.screenshot({ path: out, clip: { x, y, width, height } });
   await page.close();
 }
 
-await elShot("/work/intake-automation/", ".grid-3", "work/intake-automation/screenshots/intake-card.png");
-await elShot("/work/ops-dashboard/board.html", ".dash-shell", "work/ops-dashboard/screenshots/dashboard-card.png");
+await shot(
+  {
+    path: "/work/intake-automation/",
+    file: "work/intake-automation/screenshots/intake-card.png",
+    width: 1280,
+    height: 800,
+    full: false
+  },
+  async (page) => {
+    await page.addStyleTag({
+      content: `
+        .demo-banner,
+        .site-header,
+        .site-footer,
+        .quiet,
+        .section h2,
+        .section .wrap > p:first-of-type { display: none !important; }
+        .page-hero { padding: 2.4rem 0 0.4rem; }
+        .section { padding-top: 0.4rem !important; }
+        .grid-3 { margin-top: 1.1rem !important; gap: 1rem; }
+        .offer { min-height: 13rem; padding: 2.1rem 1.4rem; }
+      `
+    });
+  }
+);
+await clipRatio("/work/ops-dashboard/board.html", ".dash-shell", "work/ops-dashboard/screenshots/dashboard-card.png", "start");
+await shot({ path: "/work/website-rescue/after.html", file: "work/website-rescue/screenshots/after-card.png", width: 1280, height: 800, full: false });
 
 for (const spec of pages) {
   await shot(spec);
