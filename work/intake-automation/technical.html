@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Technical details — HVAC intake</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Technical details for the HVAC intake sample build.">
+  <link rel="canonical" href="https://tjburntcc-dot.github.io/mason-digital-services/work/intake-automation/technical.html">
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Lead intake — Hemmer Digital">
+  <meta property="og:description" content="Lead intake workflow with fixture tests. Sample build.">
+  <meta property="og:url" content="https://tjburntcc-dot.github.io/mason-digital-services/work/intake-automation/">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#f4f1ea">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <p class="demo-banner">Technical details — sample build — <a href="index.html">Project</a></p>
+  <header class="site-header">
+    <div class="wrap header-bar">
+      <a class="brand" href="../../index.html">
+        Hemmer Digital
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="../index.html">Work</a></li>
+          <li><a href="../../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="page-hero">
+      <div class="wrap">
+        <p class="kicker">Technical details</p>
+        <h1>Harbor Street HVAC — lead intake</h1>
+        <p>Optional. The project page does not require this.</p>
+      </div>
+    </div>
+
+    <section class="section" aria-labelledby="arch-h">
+      <div class="wrap">
+        <h2 id="arch-h">Architecture</h2>
+        <div class="arch" role="img" aria-label="Trigger to validate to score to route to ticket or decline.">
+          <svg viewBox="0 0 960 120" xmlns="http://www.w3.org/2000/svg" width="960" height="120">
+            <rect x="0" y="28" width="140" height="52" fill="#fffcf7" stroke="#1b1916"/>
+            <text x="14" y="60" font-size="13" fill="#1b1916">Trigger</text>
+            <rect x="164" y="28" width="140" height="52" fill="#fffcf7" stroke="#1b1916"/>
+            <text x="178" y="60" font-size="13" fill="#1b1916">Validate</text>
+            <rect x="328" y="28" width="140" height="52" fill="#fffcf7" stroke="#1b1916"/>
+            <text x="350" y="60" font-size="13" fill="#1b1916">Score</text>
+            <rect x="492" y="28" width="140" height="52" fill="#fffcf7" stroke="#1b1916"/>
+            <text x="520" y="60" font-size="13" fill="#1b1916">Match CRM</text>
+            <rect x="656" y="28" width="140" height="52" fill="#fffcf7" stroke="#1b1916"/>
+            <text x="690" y="60" font-size="13" fill="#1b1916">Route</text>
+            <rect x="820" y="28" width="140" height="52" fill="#1b1916"/>
+            <text x="848" y="60" font-size="13" fill="#f4f1ea">Output</text>
+          </svg>
+        </div>
+        <p class="note">All processing is client-side JavaScript in <code>engine.js</code>. There is no dispatch API and no secret key.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="run-h">
+      <div class="wrap">
+        <h2 id="run-h">Run a lead</h2>
+        <div class="contact-grid">
+          <form class="form" id="lead-form">
+            <label>Load a fixture
+              <select id="fixture-select">
+                <option value="">Custom entry</option>
+              </select>
+            </label>
+            <label>Name <input name="name" required></label>
+            <label>Phone <input name="phone" required placeholder="617-555-0100"></label>
+            <label>ZIP <input name="zip" required inputmode="numeric" maxlength="5"></label>
+            <label>Issue <textarea name="issue" required></textarea></label>
+            <label>Source
+              <select name="source">
+                <option value="web-form">Web form</option>
+                <option value="voicemail-transcript">Voicemail transcript</option>
+                <option value="after-hours-form">After-hours form</option>
+              </select>
+            </label>
+            <button class="btn btn-primary" type="submit">Process lead</button>
+          </form>
+          <div>
+            <div class="pipeline" id="pipeline">
+              <div class="stage" data-stage="trigger"><h3>Trigger</h3><p>Waiting</p></div>
+              <div class="stage" data-stage="validate"><h3>Validate</h3><p>Waiting</p></div>
+              <div class="stage" data-stage="score"><h3>Score / match</h3><p>Waiting</p></div>
+              <div class="stage" data-stage="output"><h3>Output</h3><p>Waiting</p></div>
+            </div>
+            <pre id="output" class="card" style="white-space:pre-wrap;overflow:auto;font-size:.85rem;min-height:12rem">Run a fixture or submit the form.</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="test-h">
+      <div class="wrap">
+        <h2 id="test-h">Fixture tests</h2>
+        <p class="section-intro">Five authored cases. Expected results live in <code>fixtures/expected.json</code>. This button runs the same engine the form uses.</p>
+        <p><button class="btn btn-ghost" type="button" id="run-tests">Run fixture tests</button></p>
+        <div id="test-results" class="card" style="margin-top:1rem"></div>
+      </div>
+    </section>
+
+    <section class="section" style="border-bottom:0">
+      <div class="wrap prose">
+        <h2>Assumptions, limits, review</h2>
+        <p><strong>Assumptions.</strong> Service area is a ZIP allow-list. Urgency is keyword-based, not a trained model. CRM match is phone-only. A human still calls the customer.</p>
+        <p><strong>What was automated.</strong> Validation, scoring, CRM match, routing, ticket JSON, and customer/owner copy. No SMS or calendar write.</p>
+        <p><strong>What was manually reviewed.</strong> Each fixture’s expected route, emergency flag, and existing-customer match.</p>
+        <p><strong>Limitations.</strong> Keyword scoring will miss unusual phrasing. This is not connected to a real HVAC board. Do not enter real customer data.</p>
+        <p>The same notes are in the repository file <code>work/intake-automation/README.md</code>.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-bar"><p><a href="index.html">Project</a> · <a href="../index.html">All work</a></p></div>
+  </footer>
+  <script src="../../assets/js/site-config.js"></script>
+  <script src="../../assets/js/site.js"></script>
+  <script src="engine.js"></script>
+  <script src="tests.js"></script>
+  <script>
+    (function () {
+      var payload = { crm: [], serviceZips: [], leads: [], expected: [] };
+      var form = document.getElementById("lead-form");
+      var select = document.getElementById("fixture-select");
+      var output = document.getElementById("output");
+
+      function setStages(result) {
+        var stages = document.querySelectorAll("#pipeline .stage");
+        stages.forEach(function (el) {
+          el.classList.remove("is-active", "is-done");
+          el.querySelector("p").textContent = "Waiting";
+        });
+        stages[0].classList.add("is-done");
+        stages[0].querySelector("p").textContent = "Form / fixture received";
+        if (!result.ok) {
+          stages[1].classList.add("is-active");
+          stages[1].querySelector("p").textContent = "Failed: " + result.errors.join(", ");
+          return;
+        }
+        stages[1].classList.add("is-done");
+        stages[1].querySelector("p").textContent = "Fields accepted";
+        stages[2].classList.add("is-done");
+        stages[2].querySelector("p").textContent = result.route + (result.emergency ? " · emergency" : "");
+        stages[3].classList.add("is-active");
+        stages[3].querySelector("p").textContent = result.ticket ? result.ticket.id : "No ticket";
+      }
+
+      function fillLead(input) {
+        form.name.value = input.name || "";
+        form.phone.value = input.phone || "";
+        form.zip.value = input.zip || "";
+        form.issue.value = input.issue || "";
+        form.source.value = input.source || "web-form";
+      }
+
+      function run(input) {
+        var result = HarborIntake.processLead(input, payload);
+        setStages(result);
+        output.textContent = JSON.stringify(result, null, 2);
+      }
+
+      Promise.all([
+        fetch("fixtures/crm.json").then(function (r) { return r.json(); }),
+        fetch("fixtures/leads.json").then(function (r) { return r.json(); }),
+        fetch("fixtures/expected.json").then(function (r) { return r.json(); })
+      ]).then(function (files) {
+        payload.crm = files[0];
+        payload.serviceZips = files[1].serviceZips;
+        payload.leads = files[1].leads;
+        payload.expected = files[2];
+        payload.leads.forEach(function (lead) {
+          var opt = document.createElement("option");
+          opt.value = lead.id;
+          opt.textContent = lead.id + " — " + lead.label;
+          select.appendChild(opt);
+        });
+      }).catch(function () {
+        output.textContent = "Could not load fixtures. Open this demo over a local server, not a raw file:// path.";
+      });
+
+      select.addEventListener("change", function () {
+        var lead = payload.leads.find(function (row) { return row.id === select.value; });
+        if (lead) fillLead(lead.input);
+      });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        run({
+          name: form.name.value,
+          phone: form.phone.value,
+          zip: form.zip.value,
+          issue: form.issue.value,
+          source: form.source.value
+        });
+      });
+
+      document.getElementById("run-tests").addEventListener("click", function () {
+        var results = HarborIntakeTests.runTests(payload.leads, payload.expected, payload.crm, payload.serviceZips);
+        var passed = results.filter(function (row) { return row.pass; }).length;
+        var html = "<p><strong>" + passed + " / " + results.length + " passed</strong></p>";
+        results.forEach(function (row) {
+          html += '<div class="test-row"><span class="' + (row.pass ? "status-pass" : "status-fail") + '">' + (row.pass ? "PASS" : "FAIL") + "</span> <span>" + row.id + " — " + row.label + "</span> <span>" + row.detail + "</span></div>";
+        });
+        document.getElementById("test-results").innerHTML = html;
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+[
+  {
+    "id": "lead-01",
+    "ok": true,
+    "route": "same-day",
+    "emergency": false,
+    "existingCustomer": false,
+    "ticketType": "dispatch"
+  },
+  {
+    "id": "lead-02",
+    "ok": true,
+    "route": "schedule",
+    "emergency": false,
+    "existingCustomer": true,
+    "customerId": "HS-1044",
+    "ticketType": "maintenance"
+  },
+  {
+    "id": "lead-03",
+    "ok": true,
+    "route": "out-of-area",
+    "emergency": false,
+    "ticketType": null
+  },
+  {
+    "id": "lead-04",
+    "ok": false,
+    "stage": "validate",
+    "errors": ["phone"]
+  },
+  {
+    "id": "lead-05",
+    "ok": true,
+    "route": "same-day",
+    "emergency": true,
+    "existingCustomer": false,
+    "ticketType": "dispatch"
+  }
+]

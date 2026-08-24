@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cedar &amp; Pine Landscaping — BEFORE (demo)</title>
+  <meta name="description" content="Intentionally broken demo of a small-business website, used in a website-rescue sample build.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #e8e8e8; color: #999; }
+    .demo-strip { background: #111; color: #f4f1ea; font: 12px/1.4 ui-monospace, monospace; text-align: center; padding: 8px; letter-spacing: .08em; text-transform: uppercase; }
+    .demo-strip a { color: #f4f1ea; }
+    .ssl { background: #7a1f1f; color: #fff; padding: 10px 14px; font-size: 14px; }
+    .ssl code { background: #5c1212; padding: 1px 4px; }
+    .nag { background: #fff3cd; color: #856404; padding: 8px 14px; font-size: 13px; border-bottom: 1px solid #e0c36a; }
+    header { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect fill='%236a7d4e' width='80' height='80'/%3E%3C/svg%3E"); color: #fff; padding: 28px 16px 40px; }
+    h1 { font-family: "Comic Sans MS", "Chalkboard SE", cursive; font-size: 42px; margin: 0; text-shadow: 2px 2px #000; }
+    nav { background: #333; overflow-x: scroll; white-space: nowrap; padding: 12px; }
+    nav a { color: #bbb; margin-right: 28px; text-decoration: none; font-size: 13px; }
+    .hero { width: 1400px; background: #d5d5d5; padding: 40px 20px; color: #b0b0b0; }
+    .hero img { width: 240px; height: 80px; background: #ccc; display: block; }
+    .grid { display: flex; gap: 12px; padding: 16px; }
+    .card { background: #f5f5f5; padding: 12px; width: 33%; color: #b8b8b8; }
+    .popup { position: fixed; inset: 0; background: rgb(0 0 0 / .55); display: grid; place-items: center; z-index: 9; }
+    .popup-card { background: #fff; color: #222; padding: 24px; width: min(90vw, 360px); }
+    .error { background: #fff; border-left: 4px solid #b32d2e; padding: 16px; margin: 16px; color: #1d1d1d; }
+    footer { background: #222; color: #666; padding: 20px; font-size: 12px; }
+    .broken { display: inline-block; width: 120px; height: 80px; background: #ddd; border: 1px dashed #aaa; color: #888; font-size: 11px; text-align: center; padding-top: 28px; }
+  </style>
+</head>
+<body>
+  <div class="demo-strip">Demo project / sample build — <a href="index.html">repair log</a> · <a href="after.html">repaired version</a></div>
+  <div class="ssl" role="alert">
+    Your connection to this site is not fully secure. This page is trying to load
+    <code>http://cdn.example-plugins.invalid/booking.js</code> (mixed content). Booking is unavailable.
+  </div>
+  <div class="nag">WordPress 5.8.3 — 11 plugins have updates available. PHP 7.4 has reached end of life. <strong>There has been a critical error on this website</strong> in plugin “Seasonal Booking Pro”.</div>
+  <header>
+    <h1>Cedar n Pine Lawncare !!!</h1>
+    <p style="margin:8px 0 0;color:#e8e8e8">est 2011 · serving the area · CALL NOW</p>
+  </header>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#services">Services</a>
+    <a href="#services">Services</a>
+    <a href="contact-missing.html">Contact</a>
+    <a href="#book">Book Online</a>
+    <a href="http://cedar-pine-old.example/wp-content/uploads/quote.pdf">Quote PDF (broken)</a>
+    <a href="#">Facebook</a>
+    <a href="#">More</a>
+    <a href="#">More</a>
+  </nav>
+  <div class="hero">
+    <p class="broken" role="img" aria-label="Missing image">[image missing]</p>
+    <p>Welcome to our site. We do lawns, trees, snow (maybe), and “more”.</p>
+    <p>Phone: <span class="broken" style="width:auto;height:auto;padding:4px 8px">image of phone number — not selectable</span></p>
+  </div>
+  <div class="grid" id="services">
+    <div class="card">
+      <h2 style="color:#ccc">Mowing</h2>
+      <p>Weekly or biweekly. Price "depends".</p>
+    </div>
+    <div class="card">
+      <h2 style="color:#ccc">Hardscape</h2>
+      <p>Patios and walls. Gallery failed to load.</p>
+      <span class="broken">404.jpg</span>
+    </div>
+    <div class="card">
+      <h2 style="color:#ccc">Contact</h2>
+      <p>The contact page returns 404. Please use the Facebook message button (also missing).</p>
+    </div>
+  </div>
+  <div class="error" id="book">
+    <p><strong>There has been a critical error on this website.</strong></p>
+    <p>Learn more about troubleshooting WordPress.</p>
+    <p style="color:#666;font-size:13px">Uncaught Error: Call to undefined function wp_mail() in <code>/wp-content/plugins/seasonal-booking-pro/checkout.php:84</code></p>
+    <button type="button" disabled>Request a visit (unavailable)</button>
+  </div>
+  <footer>
+    © cedar and pine · powered by WordPress · login · this footer overlaps on mobile
+  </footer>
+  <div class="popup" id="popup">
+    <div class="popup-card">
+      <p><strong>Win a free aeration!</strong></p>
+      <p>Join our list. This overlay has no close control on mobile and sits on top of the booking error.</p>
+      <p><a href="index.html">Close overlay (added only so this demo stays usable)</a></p>
+    </div>
+  </div>
+</body>
+</html>

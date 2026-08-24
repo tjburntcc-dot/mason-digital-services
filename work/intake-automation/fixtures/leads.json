@@ -1,0 +1,60 @@
+{
+  "serviceZips": ["02108", "02109", "02110", "02111", "02113", "02116", "02210"],
+  "leads": [
+    {
+      "id": "lead-01",
+      "label": "No heat, new customer, in area",
+      "input": {
+        "name": "Jordan Hale",
+        "phone": "617-555-0107",
+        "zip": "02110",
+        "issue": "No heat since last night. House is at 54F.",
+        "source": "web-form"
+      }
+    },
+    {
+      "id": "lead-02",
+      "label": "Filter change, existing customer",
+      "input": {
+        "name": "Priya Shah",
+        "phone": "(617) 555-0142",
+        "zip": "02109",
+        "issue": "Annual filter change and tune-up",
+        "source": "web-form"
+      }
+    },
+    {
+      "id": "lead-03",
+      "label": "Out of service area",
+      "input": {
+        "name": "Sam Ortiz",
+        "phone": "5085550188",
+        "zip": "02601",
+        "issue": "AC not cooling",
+        "source": "voicemail-transcript"
+      }
+    },
+    {
+      "id": "lead-04",
+      "label": "Missing phone number",
+      "input": {
+        "name": "Alex Kim",
+        "phone": "",
+        "zip": "02108",
+        "issue": "No hot water",
+        "source": "web-form"
+      }
+    },
+    {
+      "id": "lead-05",
+      "label": "Gas smell, emergency flag",
+      "input": {
+        "name": "Riley Chen",
+        "phone": "6175550160",
+        "zip": "02210",
+        "issue": "Gas smell near the furnace, everyone is outside",
+        "source": "after-hours-form"
+      }
+    }
+  ]
+}

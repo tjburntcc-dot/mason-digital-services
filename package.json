@@ -1,0 +1,14 @@
+{
+  "name": "mason-digital-services",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node work/intake-automation/run-tests.mjs && node work/ops-dashboard/check-data.mjs && node scripts/check-links.mjs",
+    "apply-config": "node scripts/apply-site-config.mjs",
+    "qa": "node scripts/qa-flow.mjs",
+    "start": "python -m http.server 8080"
+  },
+  "dependencies": {
+    "puppeteer-core": "^24.15.0"
+  }
+}

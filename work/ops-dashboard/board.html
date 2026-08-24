@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Example board — Northfield Field Services</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Working example of a sample operations board. Demo project / sample build.">
+  <link rel="canonical" href="https://tjburntcc-dot.github.io/mason-digital-services/work/ops-dashboard/board.html">
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Operations board — Hemmer Digital">
+  <meta property="og:description" content="Field-service operations board. Sample build on synthetic data.">
+  <meta property="og:url" content="https://tjburntcc-dot.github.io/mason-digital-services/work/ops-dashboard/">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#f4f1ea">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <p class="demo-banner">Sample build — sample data — <a href="index.html">Project</a></p>
+  <header class="site-header">
+    <div class="wrap header-bar">
+      <a class="brand" href="../../index.html">
+        Hemmer Digital
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="../index.html">Work</a></li>
+          <li><a href="../../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <div class="page-hero">
+      <div class="wrap">
+        <p class="kicker">Example</p>
+        <h1>Northfield Field Services — week board</h1>
+        <p>Sample data.</p>
+      </div>
+    </div>
+
+    <section class="section" style="border-bottom:0;padding-top:0">
+      <div class="wrap">
+        <div class="dash-shell">
+          <div class="dash-bar">
+            <div>
+              <strong id="company-name">Operations</strong>
+              <p class="note" style="margin:0.2rem 0 0" id="data-notice"></p>
+            </div>
+            <div class="actions">
+              <button class="btn btn-ghost" type="button" id="export-jobs">Export jobs CSV</button>
+            </div>
+          </div>
+          <div class="kpis" id="kpis"></div>
+          <div class="arch" style="border:0;border-top:1px solid var(--line);border-radius:0" aria-label="Technician hours this week">
+            <p class="kicker">Technician hours (scheduled + in progress + complete this week)</p>
+            <div id="load-chart"></div>
+          </div>
+          <form class="filters" id="filters">
+            <label>Status
+              <select id="filter-status">
+                <option value="">All</option>
+                <option>queued</option>
+                <option>scheduled</option>
+                <option>in-progress</option>
+                <option>blocked</option>
+                <option>complete</option>
+              </select>
+            </label>
+            <label>Technician
+              <select id="filter-tech"><option value="">All</option></select>
+            </label>
+            <label>Search
+              <input id="filter-q" type="search" placeholder="Job, customer, issue">
+            </label>
+          </form>
+          <div style="overflow-x:auto">
+            <table class="data-table" id="jobs-table">
+              <thead>
+                <tr>
+                  <th scope="col"><button type="button" data-sort="id">Job</button></th>
+                  <th scope="col"><button type="button" data-sort="customer">Customer</button></th>
+                  <th scope="col"><button type="button" data-sort="tech">Tech</button></th>
+                  <th scope="col"><button type="button" data-sort="status">Status</button></th>
+                  <th scope="col"><button type="button" data-sort="sla">SLA</button></th>
+                  <th scope="col"><button type="button" data-sort="scheduled">Date</button></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="drawer" id="drawer" hidden>
+            <h2 class="kicker" style="color:var(--ink)">Job detail</h2>
+            <div id="drawer-body"></div>
+          </div>
+          <div style="overflow-x:auto;border-top:1px solid var(--line)">
+            <table class="data-table" id="inv-table">
+              <caption class="visually-hidden">Invoices</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Invoice</th>
+                  <th scope="col">Customer</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Age (days)</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-bar"><p><a href="index.html">Project</a> · <a href="../index.html">All work</a></p></div>
+  </footer>
+  <script src="../../assets/js/site-config.js"></script>
+  <script src="../../assets/js/site.js"></script>
+  <script src="data.js"></script>
+  <script>
+    (function () {
+      var data = window.NorthfieldData;
+      var techMap = {};
+      data.technicians.forEach(function (t) { techMap[t.id] = t; });
+      document.getElementById("company-name").textContent = data.company + " · week of " + data.weekOf;
+      document.getElementById("data-notice").textContent = data.notice;
+
+      var techSelect = document.getElementById("filter-tech");
+      data.technicians.forEach(function (t) {
+        var opt = document.createElement("option");
+        opt.value = t.id;
+        opt.textContent = t.name + " (" + t.trade + ")";
+        techSelect.appendChild(opt);
+      });
+
+      var openJobs = data.jobs.filter(function (j) { return j.status !== "complete"; }).length;
+      var overdue = data.invoices.filter(function (i) { return i.status === "overdue"; });
+      var overdueSum = overdue.reduce(function (sum, i) { return sum + i.amount; }, 0);
+      var missed = data.jobs.filter(function (j) { return j.sla === "missed" || j.sla === "at-risk"; }).length;
+      var hours = {};
+      data.jobs.forEach(function (j) {
+        hours[j.tech] = (hours[j.tech] || 0) + j.hours;
+      });
+      var loaded = Object.keys(hours).filter(function (id) { return hours[id] >= 8; }).length;
+
+      document.getElementById("kpis").innerHTML =
+        kpi("Open jobs", openJobs, "Not marked complete") +
+        kpi("Overdue invoices", overdue.length, "$" + overdueSum.toLocaleString("en-US") + " aging") +
+        kpi("SLA watch", missed, "Missed or at-risk jobs") +
+        kpi("Techs at 8h+", loaded, "Sum of job hours this extract");
+
+      function kpi(label, value, sub) {
+        return '<div class="kpi"><div class="label">' + label + '</div><div class="value">' + value + '</div><div class="sub">' + sub + "</div></div>";
+      }
+
+      var maxH = Math.max.apply(null, Object.keys(hours).map(function (id) { return hours[id]; }).concat([1]));
+      document.getElementById("load-chart").innerHTML = data.technicians.map(function (t) {
+        var h = hours[t.id] || 0;
+        var w = Math.round((h / maxH) * 100);
+        return '<p style="margin:.35rem 0;display:grid;grid-template-columns:9rem 1fr 3rem;gap:.6rem;align-items:center"><span>' + t.name + '</span><span style="background:#ece7dc;height:0.7rem;display:block"><span style="display:block;height:100%;width:' + w + '%;background:#1b1916"></span></span><span>' + h + "h</span></p>";
+      }).join("");
+
+      var sortKey = "scheduled";
+      var sortDir = 1;
+      var selected = null;
+
+      function filtered() {
+        var status = document.getElementById("filter-status").value;
+        var tech = document.getElementById("filter-tech").value;
+        var q = document.getElementById("filter-q").value.trim().toLowerCase();
+        return data.jobs.filter(function (j) {
+          if (status && j.status !== status) return false;
+          if (tech && j.tech !== tech) return false;
+          if (q) {
+            var blob = (j.id + " " + j.customer + " " + j.issue).toLowerCase();
+            if (blob.indexOf(q) === -1) return false;
+          }
+          return true;
+        }).sort(function (a, b) {
+          var av = a[sortKey];
+          var bv = b[sortKey];
+          if (av < bv) return -1 * sortDir;
+          if (av > bv) return 1 * sortDir;
+          return 0;
+        });
+      }
+
+      function renderJobs() {
+        var rows = filtered();
+        var tbody = document.querySelector("#jobs-table tbody");
+        tbody.innerHTML = rows.map(function (j) {
+          var tech = techMap[j.tech];
+          var slaClass = j.sla === "missed" || j.sla === "at-risk" ? "tag-risk" : "tag-ok";
+          var sel = selected === j.id ? " is-selected" : "";
+          return "<tr class='" + sel + "'><td><button type='button' data-id='" + j.id + "'>" + j.id + "</button></td><td>" + j.customer + "</td><td>" + tech.name + "</td><td>" + j.status + "</td><td><span class='tag " + slaClass + "'>" + j.sla + "</span></td><td>" + j.scheduled + "</td></tr>";
+        }).join("") || "<tr><td colspan='6'>No jobs match these filters.</td></tr>";
+      }
+
+      function showJob(id) {
+        var j = data.jobs.find(function (row) { return row.id === id; });
+        if (!j) return;
+        selected = id;
+        var drawer = document.getElementById("drawer");
+        drawer.hidden = false;
+        document.getElementById("drawer-body").innerHTML =
+          "<p><strong>" + j.id + "</strong> · " + j.customer + "</p>" +
+          "<p>" + j.issue + "</p>" +
+          "<p>Technician " + techMap[j.tech].name + " (" + techMap[j.tech].trade + ") · " + j.hours + "h · " + j.status + "</p>" +
+          "<p>This record is synthetic. It does not open a real work order.</p>";
+        renderJobs();
+        drawer.focus();
+      }
+
+      document.querySelector("#jobs-table tbody").addEventListener("click", function (event) {
+        var btn = event.target.closest("button[data-id]");
+        if (btn) showJob(btn.getAttribute("data-id"));
+      });
+
+      document.querySelectorAll("#jobs-table [data-sort]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var key = btn.getAttribute("data-sort");
+          if (sortKey === key) sortDir *= -1;
+          else { sortKey = key; sortDir = 1; }
+          renderJobs();
+        });
+      });
+
+      ["filter-status", "filter-tech", "filter-q"].forEach(function (id) {
+        document.getElementById(id).addEventListener("input", renderJobs);
+        document.getElementById(id).addEventListener("change", renderJobs);
+      });
+
+      document.querySelector("#inv-table tbody").innerHTML = data.invoices.map(function (inv) {
+        var tag = inv.status === "overdue" ? "tag-risk" : "tag-ok";
+        return "<tr><td>" + inv.id + "</td><td>" + inv.customer + "</td><td>$" + inv.amount.toLocaleString("en-US") + "</td><td>" + inv.ageDays + "</td><td><span class='tag " + tag + "'>" + inv.status + "</span></td></tr>";
+      }).join("");
+
+      document.getElementById("export-jobs").addEventListener("click", function () {
+        var lines = [["id", "customer", "tech", "status", "sla", "hours", "scheduled", "issue"].join(",")];
+        filtered().forEach(function (j) {
+          lines.push([j.id, csv(j.customer), j.tech, j.status, j.sla, j.hours, j.scheduled, csv(j.issue)].join(","));
+        });
+        var blob = new Blob([lines.join("\n")], { type: "text/csv" });
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "northfield-jobs-synthetic.csv";
+        a.click();
+        URL.revokeObjectURL(a.href);
+      });
+
+      function csv(value) {
+        return '"' + String(value).replace(/"/g, '""') + '"';
+      }
+
+      renderJobs();
+    })();
+  </script>
+</body>
+</html>

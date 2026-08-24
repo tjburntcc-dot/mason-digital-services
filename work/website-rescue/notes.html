@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Technical details — website rescue</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Technical details for the Cedar and Pine website rescue sample build.">
+  <link rel="canonical" href="https://tjburntcc-dot.github.io/mason-digital-services/work/website-rescue/notes.html">
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#f4f1ea">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <p class="demo-banner">Technical details — sample build — <a href="index.html">Project</a></p>
+  <header class="site-header">
+    <div class="wrap header-bar">
+      <a class="brand" href="../../index.html">
+        Hemmer Digital
+      </a>
+    </div>
+  </header>
+  <main id="main">
+    <div class="page-hero">
+      <div class="wrap">
+        <p class="kicker">Technical details</p>
+        <h1>Cedar &amp; Pine — repair log</h1>
+        <p>Optional. The project page does not require this.</p>
+      </div>
+    </div>
+    <section class="section" style="border-bottom:0">
+      <div class="wrap">
+        <p>The before and after pages are a static recreation of common public-site failures. They are not a live WordPress admin session.</p>
+        <div style="overflow-x:auto;margin-top:1rem">
+          <table class="repair-log">
+            <thead>
+              <tr>
+                <th scope="col">Issue</th>
+                <th scope="col">What was wrong</th>
+                <th scope="col">What changed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Insecure-script warning</td>
+                <td>The visit form depended on a script loaded over HTTP</td>
+                <td>The form is now ordinary HTML on the page</td>
+              </tr>
+              <tr>
+                <td>Visit form failed</td>
+                <td>The booking plugin crashed</td>
+                <td>Replaced with an on-page request form</td>
+              </tr>
+              <tr>
+                <td>Contact went nowhere</td>
+                <td>The menu pointed at a missing page</td>
+                <td>Contact is a section on the same site</td>
+              </tr>
+              <tr>
+                <td>Unusable on a phone</td>
+                <td>The layout was locked to a wide canvas</td>
+                <td>The repaired page uses a fluid width</td>
+              </tr>
+              <tr>
+                <td>Hard to read</td>
+                <td>Pale type, missing images, phone as a picture</td>
+                <td>Dark text on a light ground; text contact path</td>
+              </tr>
+              <tr>
+                <td>Blocking popup</td>
+                <td>An overlay sat on the form</td>
+                <td>Removed</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note" style="margin-top:1.2rem"><a href="before.html">Broken version</a> · <a href="after.html">Repaired version</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-bar"><p><a href="index.html">Project</a> · <a href="../index.html">All work</a></p></div>
+  </footer>
+  <script src="../../assets/js/site-config.js"></script>
+  <script src="../../assets/js/site.js"></script>
+</body>
+</html>

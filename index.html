@@ -1,157 +1,227 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Mason Digital Services — Websites, automations, and software fixes for small businesses</title>
-<meta name="description" content="Mason Digital Services provides web development and software services for small businesses, including websites, workflow automation, and custom technical fixes."/>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text y='68' x='50' text-anchor='middle' font-size='54' font-family='system-ui' fill='%23ffffff'>M</text></svg>"/>
-<style>
-  :root{
-    --ink:#0f172a;
-    --body:#334155;
-    --muted:#64748b;
-    --line:#e2e8f0;
-    --bg:#ffffff;
-    --panel:#f8fafc;
-    --accent:#1d4ed8;
-    --maxw:44rem;
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hemmer Digital — websites, automation, and software</title>
+  <meta name="description" content="Hemmer Digital builds websites, automation, and small software for small businesses. Work by Mason Hemmer.">
+  <meta name="author" content="Mason Hemmer">
+  <meta name="theme-color" content="#f4f1ea">
+  <link rel="canonical" href="https://tjburntcc-dot.github.io/mason-digital-services/">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hemmer Digital">
+  <meta property="og:description" content="Websites, automation, and software for small businesses.">
+  <meta property="og:url" content="https://tjburntcc-dot.github.io/mason-digital-services/">
+  <meta property="og:image" content="https://tjburntcc-dot.github.io/mason-digital-services/assets/img/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hemmer Digital">
+  <meta name="twitter:description" content="Websites, automation, and software for small businesses.">
+  <meta name="twitter:image" content="https://tjburntcc-dot.github.io/mason-digital-services/assets/img/og.png">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="preload" href="assets/fonts/source-serif-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://tjburntcc-dot.github.io/mason-digital-services/#business",
+        "name": "Hemmer Digital",
+        "url": "https://tjburntcc-dot.github.io/mason-digital-services/",
+        "email": "mailto:masonhemmer@icloud.com",
+        "description": "Websites, automation, and software for small businesses.",
+        "founder": { "@id": "https://tjburntcc-dot.github.io/mason-digital-services/#person" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://tjburntcc-dot.github.io/mason-digital-services/#person",
+        "name": "Mason Hemmer",
+        "email": "mailto:masonhemmer@icloud.com",
+        "worksFor": { "@id": "https://tjburntcc-dot.github.io/mason-digital-services/#business" }
+      }
+    ]
   }
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--body);
-    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    font-size:17px;
-    line-height:1.65;
-  }
-  a{color:var(--accent)}
-  a:focus-visible,:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:2px}
-  .skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:.75rem 1rem;z-index:10}
-  .skip:focus{left:0}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.25rem}
-  header{border-bottom:1px solid var(--line)}
-  .bar{display:flex;align-items:center;gap:.7rem;padding:1.15rem 0}
-  .mark{
-    width:2.1rem;height:2.1rem;border-radius:.5rem;background:var(--ink);color:#fff;
-    display:grid;place-items:center;font-weight:700;flex:none;font-size:1.05rem;
-  }
-  .bar strong{color:var(--ink);font-size:1.02rem;letter-spacing:-.01em}
-  main{padding:3rem 0 1rem}
-  h1{
-    color:var(--ink);font-size:clamp(1.65rem,5vw,2.35rem);line-height:1.22;
-    letter-spacing:-.02em;margin:0 0 1rem;
-  }
-  .sub{font-size:1.08rem;color:var(--body);margin:0 0 1.75rem;max-width:38rem}
-  .cta{
-    display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
-    padding:.8rem 1.4rem;border-radius:.5rem;font-weight:600;font-size:1rem;
-  }
-  .cta:hover{background:#1e293b}
-  section{margin:3rem 0}
-  h2{
-    color:var(--ink);font-size:1.22rem;letter-spacing:-.01em;margin:0 0 1.1rem;
-    padding-bottom:.6rem;border-bottom:1px solid var(--line);
-  }
-  ul{list-style:none;margin:0;padding:0;display:grid;gap:1rem}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:.6rem;padding:1.1rem 1.25rem}
-  .card h3{color:var(--ink);font-size:1.02rem;margin:0 0 .35rem;letter-spacing:-.005em}
-  .card p{margin:0;color:var(--body);font-size:.97rem}
-  .steps{counter-reset:s}
-  .steps li{counter-increment:s;display:flex;gap:.95rem;align-items:flex-start}
-  .steps li::before{
-    content:counter(s);flex:none;width:1.85rem;height:1.85rem;border-radius:50%;
-    background:var(--ink);color:#fff;display:grid;place-items:center;
-    font-size:.9rem;font-weight:700;margin-top:.1rem;
-  }
-  .steps h3{color:var(--ink);font-size:1rem;margin:0 0 .2rem}
-  .steps p{margin:0;font-size:.97rem}
-  .contact p{margin:0 0 .5rem}
-  footer{border-top:1px solid var(--line);margin-top:3.5rem;padding:1.75rem 0 2.5rem;color:var(--muted);font-size:.93rem}
-  footer p{margin:.2rem 0}
-  @media (min-width:34rem){ ul.services{grid-template-columns:1fr 1fr} }
-</style>
+  </script>
 </head>
 <body>
-<a class="skip" href="#main">Skip to main content</a>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="wrap header-bar">
+      <a class="brand" href="index.html">
+        Hemmer Digital
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-<header>
-  <div class="wrap bar">
-    <span class="mark" aria-hidden="true">M</span>
-    <strong>Mason Digital Services</strong>
-  </div>
-</header>
-
-<main id="main">
-  <div class="wrap">
-
-    <h1>Websites, automations, and software fixes for small businesses.</h1>
-    <p class="sub">
-      Mason Digital Services helps small businesses build, fix, and improve practical
-      digital systems.
-    </p>
-    <p><a class="cta" href="mailto:masonhemmer@icloud.com">Email masonhemmer@icloud.com</a></p>
-
-    <section aria-labelledby="services">
-      <h2 id="services">Services</h2>
-      <ul class="services">
-        <li class="card">
-          <h3>Website development</h3>
-          <p>Building and rebuilding small business websites, including layout, content structure, and mobile support.</p>
-        </li>
-        <li class="card">
-          <h3>Workflow automation</h3>
-          <p>Automating repetitive manual steps so routine work runs with less hands-on time.</p>
-        </li>
-        <li class="card">
-          <h3>Software fixes and custom technical work</h3>
-          <p>Diagnosing and fixing specific software problems, and building small custom tools where an off-the-shelf option does not fit.</p>
-        </li>
-      </ul>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <p class="brand-kicker">Hemmer Digital</p>
+        <h1 id="hero-title">Websites, automation, and software for small businesses.</h1>
+        <p class="lede">Independent work by Mason Hemmer — the site, the workflow, or the small tool you actually need.</p>
+        <div class="actions">
+          <a class="btn btn-ghost" href="#work">View Work</a>
+          <a class="btn btn-primary" href="#contact">Contact</a>
+        </div>
+      </div>
     </section>
 
-    <section aria-labelledby="how">
-      <h2 id="how">How I work</h2>
-      <ul class="steps">
-        <li>
-          <div>
-            <h3>Clear scope</h3>
-            <p>We agree on exactly what is being built or fixed, and what is not included, before work starts.</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <h3>Practical implementation</h3>
-            <p>Work is done in small, reviewable steps so progress is visible rather than described.</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <h3>Tested handoff</h3>
-            <p>Work is tested before delivery, and handed over with what you need to run it yourself.</p>
-          </div>
-        </li>
-      </ul>
+    <section class="section" id="do" aria-labelledby="do-title">
+      <div class="wrap">
+        <h2 class="eyebrow" id="do-title">What I do</h2>
+        <div class="grid-3">
+          <article class="offer">
+            <h3>Websites</h3>
+            <p>New sites and rebuilds that people can read, use on a phone, and contact you from.</p>
+          </article>
+          <article class="offer">
+            <h3>Automation</h3>
+            <p>Repeat enquiries turned into a clear next step, instead of sitting in an inbox.</p>
+          </article>
+          <article class="offer">
+            <h3>Software / Internal Tools</h3>
+            <p>Small boards and screens for work that currently lives in spreadsheets and group chats.</p>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section aria-labelledby="contact" class="contact">
-      <h2 id="contact">Contact</h2>
-      <p>Mason Digital Services</p>
-      <p>Email: <a href="mailto:masonhemmer@icloud.com">masonhemmer@icloud.com</a></p>
-      <p>Enquiries are answered by email.</p>
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <h2 class="eyebrow" id="work-title">Selected work</h2>
+        <p class="section-intro">Sample builds.</p>
+        <div class="grid-3">
+          <article class="work-card">
+            <div class="thumb">
+              <img src="work/website-rescue/screenshots/after-desktop.png" alt="Repaired small-business landscaping homepage" width="640" height="400" loading="lazy">
+            </div>
+            <div class="body">
+              <p class="meta">Website</p>
+              <h3>Website rescue</h3>
+              <p>A neglected small-business site made readable, usable on a phone, and easy to contact.</p>
+            </div>
+          </article>
+          <article class="work-card">
+            <div class="thumb">
+              <img src="work/intake-automation/screenshots/intake-card.png" alt="Lead intake sample with visit, schedule, and decline paths" width="640" height="400" loading="lazy">
+            </div>
+            <div class="body">
+              <p class="meta">Automation</p>
+              <h3>Lead intake</h3>
+              <p>New jobs sorted into a visit, a schedule, or a no — instead of sitting in an inbox.</p>
+            </div>
+          </article>
+          <article class="work-card">
+            <div class="thumb">
+              <img src="work/ops-dashboard/screenshots/dashboard-card.png" alt="Field operations board with jobs and invoices" width="640" height="400" loading="lazy">
+            </div>
+            <div class="body">
+              <p class="meta">Internal tool</p>
+              <h3>Operations board</h3>
+              <p>Open jobs, who is busy, and which invoices are aging — on one screen.</p>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
-  </div>
-</main>
+    <section class="section" id="how" aria-labelledby="how-title">
+      <div class="wrap">
+        <h2 class="eyebrow" id="how-title">How I work</h2>
+        <ol class="process">
+          <li>
+            <strong>Understand</strong>
+            <span>The problem, and what done looks like.</span>
+          </li>
+          <li>
+            <strong>Build</strong>
+            <span>The site, the workflow, or the tool.</span>
+          </li>
+          <li>
+            <strong>Test</strong>
+            <span>The path that has to work.</span>
+          </li>
+          <li>
+            <strong>Deliver</strong>
+            <span>The finished work, with notes when they’re useful.</span>
+          </li>
+        </ol>
+      </div>
+    </section>
 
-<footer>
-  <div class="wrap">
-    <p><strong>Mason Digital Services</strong></p>
-    <p><a href="mailto:masonhemmer@icloud.com">masonhemmer@icloud.com</a></p>
-  </div>
-</footer>
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="wrap">
+        <h2 class="eyebrow" id="about-title">About</h2>
+        <div class="about">
+          <p>Hemmer Digital is independent work by Mason Hemmer. I take on websites, automation, and small software projects for small businesses.</p>
+        </div>
+      </div>
+    </section>
 
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <h2 class="eyebrow" id="contact-title">Contact</h2>
+        <div class="contact-grid">
+          <div class="contact-copy">
+            <p>Tell me what’s broken, or what you want built.</p>
+            <p><a data-contact-email href="mailto:masonhemmer@icloud.com">masonhemmer@icloud.com</a></p>
+          </div>
+          <form class="form" id="contact-form" data-contact-email action="mailto:masonhemmer@icloud.com" method="post" enctype="text/plain" novalidate>
+            <div class="hp" aria-hidden="true">
+              <label>Company website <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
+            </div>
+            <label>Name <span class="req">required</span>
+              <input type="text" name="name" autocomplete="name" required>
+            </label>
+            <label>Email <span class="req">required</span>
+              <input type="email" name="email" autocomplete="email" required>
+            </label>
+            <label>Topic
+              <select name="topic">
+                <option>Website</option>
+                <option>Automation</option>
+                <option>Software / internal tool</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>What needs to happen <span class="req">required</span>
+              <textarea name="message" required placeholder="Business name, what you need, and any deadline."></textarea>
+            </label>
+            <button class="btn btn-primary" type="submit">Send</button>
+            <p class="note">Opens your email app with a drafted message.</p>
+            <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-bar">
+      <p>© 2026 Mason Hemmer</p>
+      <p>
+        <a href="privacy.html">Privacy</a>
+        ·
+        <a href="terms.html">Terms</a>
+        ·
+        <a data-contact-email href="mailto:masonhemmer@icloud.com">masonhemmer@icloud.com</a>
+      </p>
+    </div>
+  </footer>
+  <script src="assets/js/site-config.js"></script>
+  <script src="assets/js/site.js"></script>
+  <script src="assets/js/contact.js"></script>
 </body>
 </html>

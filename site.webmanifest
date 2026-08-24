@@ -1,0 +1,16 @@
+{
+  "name": "Hemmer Digital",
+  "short_name": "Hemmer",
+  "description": "Websites, automation, and software for small businesses.",
+  "start_url": "./",
+  "display": "browser",
+  "background_color": "#f4f1ea",
+  "theme_color": "#1b1916",
+  "icons": [
+    {
+      "src": "assets/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
