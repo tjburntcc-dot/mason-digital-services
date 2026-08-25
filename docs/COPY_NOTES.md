@@ -5,7 +5,7 @@ Public copy rebuilt 24 August 2026 for Hemmer Digital. Short, claim-audited, not
 ## Facts in use
 
 - Mason Hemmer / Hemmer Digital
-- Email currently `masonhemmer@icloud.com` (swap in `assets/js/site-config.js`)
+- Email currently `hemmerdigital@gmail.com` (swap in `assets/js/site-config.js`)
 - Services and sample builds as built
 - Sample-build labels on project pages, plus one sentence in About
 

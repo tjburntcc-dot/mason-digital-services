@@ -1,5 +1,5 @@
 (function () {
-  var email = (window.MDS && window.MDS.contactEmail) || "masonhemmer@icloud.com";
+  var email = (window.MDS && window.MDS.contactEmail) || "hemmerdigital@gmail.com";
 
   document.querySelectorAll("[data-contact-email]").forEach(function (el) {
     if (el.tagName === "A") {

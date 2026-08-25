@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /work/
 
-Sitemap: https://tjburntcc-dot.github.io/mason-digital-services/sitemap.xml
+Sitemap: https://hemmerdigital.com/sitemap.xml

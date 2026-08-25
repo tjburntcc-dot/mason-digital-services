@@ -33,7 +33,7 @@ Tablet (≈768px) was not a separate capture; layout uses the same breakpoints a
 
 ## Broken links
 
-Internal `href` / `src` targets resolve. `mailto:masonhemmer@icloud.com` is the public address.
+Internal `href` / `src` targets resolve. `mailto:hemmerdigital@gmail.com` is the public address.
 
 Intentional demo “failures” (not site bugs):
 

@@ -3,7 +3,7 @@
   if (!form) return;
 
   var status = document.getElementById("form-status");
-  var email = (window.MDS && window.MDS.contactEmail) || "masonhemmer@icloud.com";
+  var email = (window.MDS && window.MDS.contactEmail) || "hemmerdigital@gmail.com";
 
   function setStatus(message, kind) {
     if (!status) return;

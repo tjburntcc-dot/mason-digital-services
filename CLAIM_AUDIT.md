@@ -53,7 +53,7 @@ About states selected work is sample builds via one quiet line on that section. 
 | I take on websites, automation, and small software projects for small businesses | GENERAL SERVICE DESCRIPTION | Offer |
 | The projects here are sample builds | VERIFIED IN REPO | Quiet “Sample builds.” line on Selected work |
 | Tell me what’s broken, or what you want built | GENERAL SERVICE DESCRIPTION | Ask |
-| Email masonhemmer@icloud.com | VERIFIED IN REPO | Configured contact |
+| Email hemmerdigital@gmail.com | VERIFIED IN REPO | Configured contact |
 | Form opens email app | VERIFIED IN REPO | mailto + static host |
 
 Removed from the public UI: FAQ, verification dossier, capability tables, Penfield disclaimer (kept on Terms only), “Request a quote” language.

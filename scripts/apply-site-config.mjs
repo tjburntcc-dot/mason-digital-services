@@ -20,8 +20,8 @@ if (!email || !origin) {
 const prev = existsSync(lockPath)
   ? JSON.parse(readFileSync(lockPath, "utf8"))
   : {
-      contactEmail: "masonhemmer@icloud.com",
-      siteOrigin: "https://tjburntcc-dot.github.io/mason-digital-services"
+      contactEmail: "hemmerdigital@gmail.com",
+      siteOrigin: "https://hemmerdigital.com"
     };
 
 if (prev.contactEmail === email && prev.siteOrigin === origin) {
