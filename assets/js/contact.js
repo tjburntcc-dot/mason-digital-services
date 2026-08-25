@@ -1,9 +1,27 @@
 (function () {
+  var email = (window.MDS && window.MDS.contactEmail) || "hemmerdigital@gmail.com";
+
+  var copyBtn = document.querySelector("[data-copy-email]");
+  if (copyBtn && navigator.clipboard) {
+    var defaultLabel = copyBtn.textContent;
+    copyBtn.addEventListener("click", function () {
+      navigator.clipboard.writeText(email).then(function () {
+        copyBtn.textContent = "Copied";
+        copyBtn.classList.add("is-copied");
+        setTimeout(function () {
+          copyBtn.textContent = defaultLabel;
+          copyBtn.classList.remove("is-copied");
+        }, 1800);
+      });
+    });
+  } else if (copyBtn) {
+    copyBtn.hidden = true;
+  }
+
   var form = document.getElementById("contact-form");
   if (!form) return;
 
   var status = document.getElementById("form-status");
-  var email = (window.MDS && window.MDS.contactEmail) || "hemmerdigital@gmail.com";
 
   function setStatus(message, kind) {
     if (!status) return;

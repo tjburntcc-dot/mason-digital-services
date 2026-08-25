@@ -1,8 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Hemmer Digital">
-  <rect width="1200" height="630" fill="#f4f1ea"/>
-  <rect x="0" y="0" width="12" height="630" fill="#1b1916"/>
-  <text x="88" y="248" font-family="Georgia, serif" font-size="36" fill="#1b1916">Hemmer Digital</text>
-  <text x="88" y="360" font-family="Georgia, serif" font-size="44" fill="#1b1916">Websites, automation, and software</text>
-  <text x="88" y="418" font-family="Georgia, serif" font-size="44" fill="#5c574f">for small businesses.</text>
-  <text x="88" y="530" font-family="Segoe UI, Helvetica, sans-serif" font-size="20" fill="#5c574f">Mason Hemmer</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Hemmer Digital Services">
+  <rect width="1200" height="630" fill="#f5f1e7"/>
+  <g transform="translate(88 84) scale(2)">
+    <rect x="1" y="1" width="38" height="38" rx="8" fill="#14120e"/>
+    <path d="M13 10v20M27 10v20M13 20h14" fill="none" stroke="#f5f0e6" stroke-width="3.4" stroke-linecap="round"/>
+    <circle cx="20" cy="20" r="2.6" fill="#c06a24"/>
+  </g>
+  <text x="88" y="280" font-family="Georgia, serif" font-size="30" fill="#6c6355" letter-spacing="1">HEMMER DIGITAL SERVICES</text>
+  <text x="88" y="342" font-family="Georgia, serif" font-weight="600" font-size="52" fill="#14120e">Websites, software, and</text>
+  <text x="88" y="404" font-family="Georgia, serif" font-weight="600" font-size="52" fill="#14120e">digital services for businesses.</text>
+  <text x="88" y="530" font-family="Segoe UI, Helvetica, sans-serif" font-size="22" fill="#6c6355">Mason Hemmer · hemmerdigital.com</text>
 </svg>

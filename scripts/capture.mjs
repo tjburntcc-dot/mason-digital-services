@@ -41,6 +41,13 @@ async function shot(spec, after) {
   await page.setViewport({ width: spec.width, height: spec.height, deviceScaleFactor: 1 });
   const res = await page.goto(origin + spec.path, { waitUntil: "networkidle0", timeout: 30000 });
   if (!res || res.status() >= 400) errors.push(`HTTP ${res && res.status()} ${spec.path}`);
+  // Let reveal-on-scroll settle (real users see this immediately on scroll;
+  // a full-page capture renders the whole document in one frame with no
+  // scroll events, so give the IntersectionObserver/timeout fallback a beat).
+  await new Promise((r) => setTimeout(r, 250));
+  if (spec.full) {
+    await page.evaluate(() => document.querySelectorAll(".js-reveal").forEach((el) => el.classList.add("is-visible")));
+  }
   if (after) await after(page);
   const out = join(root, spec.file);
   mkdirSync(dirname(out), { recursive: true });
@@ -85,10 +92,12 @@ await shot(
         .quiet,
         .section h2,
         .section .wrap > p:first-of-type { display: none !important; }
-        .page-hero { padding: 2.4rem 0 0.4rem; }
-        .section { padding-top: 0.4rem !important; }
-        .grid-3 { margin-top: 1.1rem !important; gap: 1rem; }
-        .offer { min-height: 13rem; padding: 2.1rem 1.4rem; }
+        .page-hero { padding: 2.2rem 0 0.3rem; }
+        .page-hero p { display: none; }
+        .section { padding-top: 0.3rem !important; }
+        .intake-flow { margin-top: 1.1rem !important; }
+        .intake-row { padding: 1.3rem 1.4rem; }
+        .intake-text { font-size: 1.05rem; }
       `
     });
   }
